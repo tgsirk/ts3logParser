@@ -44,7 +44,6 @@ def get_last_existing_timestamp():
 
 
 def open_connection():
-    print('debug')
     database = mysql.connector.connect(
         host=configuration.MYSQL_HOST,
         user=configuration.MYSQL_USER,
