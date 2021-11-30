@@ -36,13 +36,13 @@ def extract_users(user_string):
     return adm_nickname, adm_user_id, registered_user_id
 
 
-def search_logs():
+def search_logs(last_known_registration_date):
     clients_registered = []
     with open('logs.txt', 'r', encoding="utf8") as f:
         for line in f:
             if configuration.REGISTER_USER_STATEMENT_0 in line or configuration.REGISTER_USER_STATEMENT_1 in line:
                 registration_datetime = extract_date(line)
-                if configuration.last_user_date < registration_datetime:
+                if  last_known_registration_date < registration_datetime:
                     split_log = splitter(line, '|', 5, 4)
                     main_log = split_log[4]
                     ts3_adm_nickname, ts3_adm_user_id, ts3_registered_user_id = extract_users(main_log)

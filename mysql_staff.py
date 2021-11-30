@@ -1,4 +1,6 @@
 # from mysql-connector-python
+import datetime
+
 import mysql.connector
 
 import configuration
@@ -38,5 +40,11 @@ def insert_values(values):
             database.rollback()
 
 
-create_table()
-database.close()
+def get_last_existing_timestamp():
+    cursor.execute(f"SELECT MAX(date) FROM {configuration.MYSQL_TABLE_NAME}")
+    result = cursor.fetchall()
+    timestamp = result[0][0]
+    if isinstance(timestamp, datetime.datetime):
+        return timestamp
+    else:
+        return datetime.datetime.min
