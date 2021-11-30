@@ -10,3 +10,4 @@ MYSQL_PASSWORD = 'example'
 MYSQL_DATABASE = 'ts3_log'
 MYSQL_TABLE_NAME = 'ts3_registered'
 last_user_date = datetime.datetime(year=2020, month=11, day=23)
+PERIOD = 300
